@@ -8,8 +8,10 @@ export function hash160(buffer: Buffer): Buffer {
 }
 
 export function hmacSHA512(key: Buffer, data: Buffer): Buffer {
-  const HmacSHA512 = CryptoJS.HmacSHA512(data, key);
-  return HmacSHA512.words;
+  const hmac = CryptoJS.algo.HMAC.create(CryptoJS.algo.SHA256, key);
+  hmac.update(data);​
+  const hash = hmac.finalize();
+  return hash.words;
 }
 
 
