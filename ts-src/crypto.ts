@@ -3,11 +3,13 @@ const CryptoJS = require('crypto-js');
 export function hash160(buffer: Buffer): Buffer {
   const sha256 = CryptoJS.algo.SHA256.create();
   const sha256Hash = sha256.update(buffer).finalize();
-  return CryptoJS.RIPEMD160(sha256Hash);
+  const RIPEMD160 = CryptoJS.RIPEMD160(sha256Hash);
+  return RIPEMD160.words;
 }
 
 export function hmacSHA512(key: Buffer, data: Buffer): Buffer {
-  return CryptoJS.HmacSHA512(data, key);
+  const HmacSHA512 = CryptoJS.HmacSHA512(data, key);
+  return HmacSHA512.words;
 }
 
 
