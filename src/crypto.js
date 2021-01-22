@@ -9,7 +9,7 @@ function hash160(buffer) {
 }
 exports.hash160 = hash160;
 function hmacSHA512(key, data) {
-    const hmac = CryptoJS.algo.HMAC.create(CryptoJS.algo.SHA256, key);
+    const hmac = CryptoJS.algo.HMAC.create(CryptoJS.algo.SHA512, key);
     hmac.update(data);
     const hash = hmac.finalize();
     return hash.words;
