@@ -2,7 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const CryptoJS = require('crypto-js');
 function hash160(buffer) {
-    const sha256Hash = CryptoJS.SHA256(buffer);
+    const sha256 = CryptoJS.algo.SHA256.create();
+    const sha256Hash = sha256.update(buffer).finalize();
     return CryptoJS.RIPEMD160(sha256Hash);
 }
 exports.hash160 = hash160;
