@@ -2,17 +2,17 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const CryptoJS = require('crypto-js');
 function hash160(buffer) {
-    const sha256 = CryptoJS.algo.SHA256.create();
-    const sha256Hash = sha256.update(buffer).finalize();
+    // const sha256 = CryptoJS.algo.SHA256.create();
+    // const sha256Hash = sha256.update(buffer).finalize();
+    // const RIPEMD160 = CryptoJS.RIPEMD160(sha256Hash);
+    const sha256Hash = CryptoJS.SHA256(buffer).words;
     const RIPEMD160 = CryptoJS.RIPEMD160(sha256Hash);
     return RIPEMD160.words;
 }
 exports.hash160 = hash160;
 function hmacSHA512(key, data) {
-    const hmac = CryptoJS.algo.HMAC.create(CryptoJS.algo.SHA512, key);
-    hmac.update(data);
-    const hash = hmac.finalize();
-    return hash.words;
+    const HmacSHA512 = CryptoJS.HmacSHA512(data, key);
+    return HmacSHA512.words;
 }
 exports.hmacSHA512 = hmacSHA512;
 // const createHash = require('create-hash');
